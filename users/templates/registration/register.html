@@ -1,0 +1,109 @@
+{% extends "Homepage/home_about_combined.html" %}
+{% load crispy_forms_tags %}
+{% block html %}
+	<html lang="en" class="h-100">
+{% endblock html %}
+{% block navbar %}
+	<a class="nav-link" href="{% url 'homepage' %}">Home</a>	
+	<a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
+	<a class="nav-link" href="{% url 'resume' %}">Resume</a>
+	<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+	{% if user.is_authenticated %}
+		<a class="nav-link active" aria-current="page" href="{% url 'users:logout' %}">Logout</a>
+	{% else %}
+		<a class="nav-link active" aria-current="page" href="{% url 'users:login' %}">Login</a>
+	{% endif %}
+{% endblock navbar %}
+{% block content %}
+	<form method="POST" action="{% url 'users:register-form' %}">
+		{% csrf_token %}
+		<fieldset class="mb-3 mt-2">
+			<legend>Join Today!</legend>
+			<hr>
+		</fieldset>
+		<div class="row">
+			<div class="col-4">
+				<div class="input-group mb-3">
+					<span class="input-group-text text-light bg-dark" id="basic-addon1">@</span>
+					<input type="text" name="username" class="form-control text-light bg-dark" placeholder="Username" aria-describedby="basic-addon1">
+				</div>
+			</div>
+			<div class="col-8">
+				<small class="text-light text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only</small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-8"> 
+				<div class="form-floating mb-3">
+					<input type="email" name="email" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<label for="floatingInput">E-mail</label>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="form-floating mb-3">
+					<input type="date" name="dob" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<label for="floatingInput">Date of Birth</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4">
+				<div class="form-floating mb-3">
+					<input type="text" name="first_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<label for="floatingInput">First Name</label>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="form-floating mb-3">
+					<input type="text" name="middle_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<label for="floatingInput">Middle Name</label>
+				</div>
+			</div>
+			<div class="col-4">
+				<div class="form-floating mb-3">
+					<input type="text" name="last_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<label for="floatingInput">Last Name</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<div class="form-floating mb-3">
+					<input type="password" name="password1" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<label for="floatingInput">Password</label>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-floating mb-3">
+					<input type="password" name="password2" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<label for="floatingInput">Confirm Password</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 text-muted" style="text-align: left;">
+				<ul>
+					<li>Your password can’t be too similar to your other personal information.</li>
+					<li>Your password must contain at least 8 characters.</li>
+					<li>Your password can’t be a commonly used password.</li>
+					<li>Your password can’t be entirely numeric.</li>
+				</ul>
+			</div>
+		</div>
+		<br><button type="submit" class="btn border rounded link-light">Submit</button>
+	</form>
+<!--<div class="card mx-auto" style="width: 25rem; background-color: transparent;">
+	<img src="..." class="card-image-top" alt="...">
+	<div class="card-body mb-1">
+		<form method="POST" action="{% url 'users:register-form' %}">
+			{% csrf_token %}
+			{{ form|crispy|linebreaks }}
+			<button type="submit" class="btn btn-dark border mb-2">Sign Up</button>
+		</form>
+		<small class="mb-5">
+			Already Have An Account? <a href="{% url 'users:login' %}">Sign In</a>
+		</small>
+	</div>
+</div> -->
+	
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "Homepage/home_about_combined.html" %}
+{% load static %}
+{% block html %}
+	<html lang="en" class="h-100">
+{% endblock html %}
+{% block navbar %}
+	<a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>	
+	<a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
+	<a class="nav-link" href="{% url 'resume' %}">Resume</a>
+	<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+	{% if user.is_authenticated %}
+		<a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
+	{% else %}
+		<a class="nav-link" href="{% url 'users:login' %}">Login</a>
+	{% endif %}
+{% endblock navbar %}
+{% block content %}
+	<div class="px-3">
+		<img src="{% static 'profile_pic/KundanKumar.jpg' %}" class="rounded-circle border border-3" height="200rem" width="200rem">
+		<h1>Kundan Kumar</h1>
+		<p class="lead mb-0">Computer Science and Engineering</p>
+		<p class="lead fst-italic fw-bold mt-0"> Netaji Subhash Engineering College</p>
+		<p class="lead">
+			<a href="https://github.com/kundankumardec16" class="fw-bold me-2"><i class="bi bi-github" style="font-size: 2rem;color: white;"></i></a>
+			<a href="https://www.slack.com" class="fw-bold me-2"><i class="bi bi-slack" style="font-size: 2rem;color: white;"></i></a>
+			<a href="https://www.linkedin.com/in/kundan-kumar-934721175/" class="fw-bold me-2"><i class="bi bi-linkedin" style="font-size: 2rem;color: white;"></i></a>
+			<a href="mailto:kundankumardec16@outlook.com" class="fw-bold me-2"><i class="bi bi-envelope-fill" style="font-size: 2rem;color: white;"></i></a>
+			<a href="https://twitter.com/kundankumar_dec" class="fw-bold me-2"><i class="bi bi-twitter" style="font-size: 2rem;color: white;"></i></a>
+		</p>
+	</div>
+{% endblock content %}

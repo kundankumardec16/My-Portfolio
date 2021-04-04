@@ -1,0 +1,22 @@
+{% extends "Homepage/home_about_combined.html" %}
+{% load static %}
+{% block html %}
+	<html lang="en" class="h-100">
+{% endblock html %}
+{% block navbar %}
+	<a class="nav-link" href="{% url 'homepage' %}">Home</a>	
+	<a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
+	<a class="nav-link active" aria-current="page" href="{% url 'resume' %}">Resume</a>
+	<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+	{% if user.is_authenticated %}
+		<a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
+	{% else %}
+		<a class="nav-link" href="{% url 'users:login' %}">Login</a>
+	{% endif %}
+{% endblock navbar %}
+{% block content %}
+	<object data="{% static 'profile_pic/resume.pdf' %}" type="application/pdf" class="mt-3 h-100"></object>
+	<a href="{% static 'profile_pic/resume.pdf' %}" class="btn btn-dark border rounded-5 mt-3 mb-2 w-25 mx-auto" download>
+		<i class="bi bi-download me-2"></i>Download
+	</a>
+{% endblock content %}

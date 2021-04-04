@@ -1,0 +1,46 @@
+{% extends "Homepage/home_about_combined.html" %}
+{% load crispy_forms_tags %}
+{% block html %}
+	<html lang="en" class="h-100">
+{% endblock html %}
+{% block navbar %}
+	<a class="nav-link" href="{% url 'homepage' %}">Home</a>	
+	<a class="nav-link active" aria-current="page" href="{% url 'blogs' %}">Blogs</a>
+	<a class="nav-link" href="{% url 'resume' %}">Resume</a>
+	<a class="nav-link" href="{% url 'contact' %}">Contact</a>
+	{% if user.is_authenticated %}
+		<a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
+	{% else %}
+		<a class="nav-link" href="{% url 'users:login' %}">Login</a>
+	{% endif %}
+{% endblock navbar %}
+{% block content %}
+	<form method="POST" action="{% url 'blog-edit' post.id %}">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-3">
+				<div class="form-floating mb-3">
+					<input type="text" name="title" class="form-control bg-dark text-light" id="floatingInput1" placeholder="Title" value="{{ post.title }}">
+					<label for="floatingInput1">Title</label>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control bg-dark text-light" id="floatingInput2" placeholder="Date posted" value="{{ post.date_posted }}" readonly>
+					<label for="floatingInput2">Posted on</label>
+				</div>
+			</div>
+			<div class="col-3">
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control bg-dark text-light" id="floatingInput3" placeholder="Title" value="{{ post.author }}" readonly>
+					<label for="floatingInput3">Author</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-floating">
+			<textarea name="content" class="form-control bg-dark text-light" style="min-height: 200px;" placeholder="Leave a comment here" id="floatingTextarea">{{ post.content }}</textarea>
+			<label for="floatingTextarea">Description</label>
+		</div>
+		<br><br><button type="submit" class="btn border rounded link-light">Apply changes</button>
+	</form>
+{% endblock content %}
