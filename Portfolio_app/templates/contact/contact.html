@@ -14,5 +14,60 @@
 	{% endif %}
 {% endblock navbar %}
 {% block content %}
-
+	<fieldset class="mb-5 mt-2">
+		<legend>Get in touch</legend>
+		<hr>
+	</fieldset>
+	<form method="POST" action="{% url 'contact-mail' %}">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-3 mb-3">
+				<div class="form-floating">
+					<input type="text" name="name" class="form-control text-light bg-dark" id="name" placeholder="1" autocomplete="off">
+					<label for="name" class="form-label">Name</label>
+				</div>
+			</div>
+			<div class="col-md-6 mb-3">
+				<div class="form-floating">
+					<input type="email" name="email" class="form-control text-light bg-dark" id="email" placeholder="2" autocomplete="off">
+					<label for="email" class="form-label">Email</label>
+				</div>
+			</div>
+			<div class="col-md-3 mb-3">
+				<div class="form-floating">
+					<input type="text" name="uname" class="form-control text-light bg-dark" id="username" placeholder="2" autocomplete="off">
+					<label for="email" class="form-label">Username</label>
+				</div>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col mb-3">
+				<div class="form-floating">
+					<input type="text" name="subject" class="form-control text-light bg-dark" id="subject" placeholder="3" autocomplete="off">
+					<label for="subject" class="form-label">Subject</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col mb-3">
+				<div class="form-floating">
+					<textarea name="message" class="form-control text-light bg-dark" id="description" style="height: 200px;" placeholder="4" autocomplete="off"></textarea>
+					<label for="description" class="form-label">Message for Kundan</label>
+				</div>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-auto mx-auto mb-3">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" id="checked" checked disabled>
+					<label class="form-check-label" for="checked">A copy will be send to the mentioned email.</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-auto mx-auto">
+				<button type="submit" class="btn border rounded link-light">Submit</button>
+			</div>
+		</div>
+	</form>
 {% endblock content %}

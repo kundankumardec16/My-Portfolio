@@ -25,7 +25,7 @@
 			<div class="col-4">
 				<div class="input-group mb-3">
 					<span class="input-group-text text-light bg-dark" id="basic-addon1">@</span>
-					<input type="text" name="username" class="form-control text-light bg-dark" placeholder="Username" aria-describedby="basic-addon1">
+					<input type="text" name="username" id="username" oninput="validationCheck(this.value)" class="form-control text-light bg-dark" placeholder="Username" aria-describedby="basic-addon1" autocomplete="off">
 				</div>
 			</div>
 			<div class="col-8">
@@ -35,13 +35,13 @@
 		<div class="row">
 			<div class="col-8"> 
 				<div class="form-floating mb-3">
-					<input type="email" name="email" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<input type="email" name="email" class="form-control text-light bg-dark" id="floatingInput" placeholder=" " autocomplete="off">
 					<label for="floatingInput">E-mail</label>
 				</div>
 			</div>
 			<div class="col-4">
 				<div class="form-floating mb-3">
-					<input type="date" name="dob" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<input type="date" name="dob" class="form-control text-light bg-dark" id="floatingInput" placeholder=" " autocomplete="off">
 					<label for="floatingInput">Date of Birth</label>
 				</div>
 			</div>
@@ -49,19 +49,19 @@
 		<div class="row">
 			<div class="col-4">
 				<div class="form-floating mb-3">
-					<input type="text" name="first_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<input type="text" name="first_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" " autocomplete="off">
 					<label for="floatingInput">First Name</label>
 				</div>
 			</div>
 			<div class="col-4">
 				<div class="form-floating mb-3">
-					<input type="text" name="middle_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<input type="text" name="middle_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" " autocomplete="off">
 					<label for="floatingInput">Middle Name</label>
 				</div>
 			</div>
 			<div class="col-4">
 				<div class="form-floating mb-3">
-					<input type="text" name="last_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<input type="text" name="last_name" class="form-control text-light bg-dark" id="floatingInput" placeholder=" " autocomplete="off">
 					<label for="floatingInput">Last Name</label>
 				</div>
 			</div>
@@ -69,13 +69,13 @@
 		<div class="row">
 			<div class="col-6">
 				<div class="form-floating mb-3">
-					<input type="password" name="password1" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<input type="password" name="password1" class="form-control text-light bg-dark" id="floatingInput" placeholder=" " autocomplete="off">
 					<label for="floatingInput">Password</label>
 				</div>
 			</div>
 			<div class="col-6">
 				<div class="form-floating mb-3">
-					<input type="password" name="password2" class="form-control text-light bg-dark" id="floatingInput" placeholder=" ">
+					<input type="password" name="password2" class="form-control text-light bg-dark" id="floatingInput" placeholder=" " autocomplete="off">
 					<label for="floatingInput">Confirm Password</label>
 				</div>
 			</div>
@@ -105,5 +105,13 @@
 		</small>
 	</div>
 </div> -->
+
+	<script type="text/javascript">
+		function validationCheck(val){
+			if(val == "Portfolio"){
+				document.getElementById('username').classList.add('is-valid');
+			}
+		}
+	</script>
 	
 {% endblock content %}

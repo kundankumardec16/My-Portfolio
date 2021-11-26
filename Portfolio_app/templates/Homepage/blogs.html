@@ -23,14 +23,31 @@
 			</div>
 			<div class="col-sm-8 p-4 ps-md-0">
 				<h5 class="mt-0">{{ post.title }}</h5>
-				{% if post.content|wordcount > 15 %}
+				<!--{% if post.content|wordcount > 15 %}
 					<p>There is more than 15 words in description. To know click on "<span class="lead">Learn more</span>" link.</p>
 				{% else %}
 					<p>{{ post.content }}</p>
-				{% endif %}
-				<a href="{% url 'blog' post.id %}" class="stretched-link link-light border rounded p-1 text-decoration-none">Learn more</a>
+				{% endif %}-->
+				<p id="content"></p>
+				<a href="{% url 'blog' post.id %}" class="stretched-link link-light border rounded p-1 text-decoration-none">Read more</a>
 			</div>
 		</div>
 	{% endfor %}
+
+	<script type="text/javascript">
+		var counter = 0 ;
+		var arr = document.querySelectorAll('#content') ;
+		
+		{% for post in Posts %}
+			if("{{ post.content }}".length < 30){
+				arr[counter].innerHTML = "{{ post.content }}" ;
+			}
+			else{
+				var content = "{{ post.content }}" ;
+				arr[counter].innerHTML = content.substring(0, 200) + " . . ." ;
+			}
+			counter++;
+		{% endfor %}
+	</script>
 
 {% endblock content %}

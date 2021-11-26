@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import *
 from .forms import *
+from django.core.mail import send_mail
+from Portfolio import settings
 #from django.http import HttpResponse, HttpResponseNotFound
 
 def homepage(request):
@@ -51,4 +54,19 @@ def resume(request):
 
 def contact(request):
 	return render(request, 'contact/contact.html')
+
+def sendmail(request):
+	if request.method=="POST":
+	     subject = request.POST['subject']
+	     msg = 'Hi ' + request.POST['name'] + ',\n\n\n' + request.POST['message']
+	     to = request.POST['email']
+	     if User.objects.filter(username = request.POST['uname']).first():
+	     	res = send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
+	     	if(res == 1):
+	     		messages.success(request, f'A copy of mail has been sent to "{to}"')
+	     	else:
+	     		messages.warning(request, f'Error encountered try again.')
+	     return redirect('contact')
+	else:
+		return render(request,'contact/contact.html')
 
